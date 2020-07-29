@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+    <!-- For demo purpose -->
+    <div class="row py-5">
+        <div class="col-lg-9 mx-auto text-white text-center">
+            <h1 class="display-4">따릉이 경로 찾기</h1>
+            <p class="lead mb-0">이것은 테스트입니다</p>
+            <p class="lead">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+                <u>Bootstrapious</u></a>
+            </p>
+        </div>
+    </div>
+    <!-- End -->
+
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h5 class="font-weight-light mb-4 font-italic text-white">출발지와 목적지를 입력하시오</h5>
+            <div class="bg-white p-5 rounded shadow">
+                {% block content1 %}
+                    <div class="container">
+                        {% for message in get_flashed_messages() %}
+                            <div class="alert alert-warning">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        {% block page_content1 %}{% endblock %}
+                    </div>
+                {% endblock %}
+                <!-- Custom rounded search bars with input group -->
+{#                <form action="/depart_search" method="post">#}
+                <form method="post">
+                    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                        <div class="input-group">
+                            <input type="search" name="depart" placeholder="출발" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                            <button type="submit" class="btn btn-success btn-rounded float-right">검색</button>
+                        </div>
+
+                    </div>
+
+                    <select class="form-control">
+
+                        {% for item in d_jibunAddr_list %}
+                        <option>{{ item }}</option>
+                        {% endfor %}
+
+                    </select>
+
+                </form>
+                <form  method="post">
+                    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                        <div class="input-group">
+                            <input type="search" name="arrive" placeholder="도착" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                            <button type="submit" class="btn btn-success btn-rounded float-right">검색</button>
+                        </div>
+
+                    </div>
+
+                    <select class="form-control">
+                        {% for item in a_jibunAddr_list %}
+                            <option>{{ item }}</option>
+                        {% endfor %}
+
+                    </select>
+
+                </form>
+                <!-- End -->
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
